@@ -1,7 +1,11 @@
 import React from "react";
 import Button from "../../components/activity/Button.jsx";
 import CallDetailsStatusIcon from "../../components/activity/CallDetailsStatusIcon.jsx";
-import { formatTime } from "../../utils/helper.js";
+import {
+  formatTime,
+  formatPhoneNumber,
+  displayMessage,
+} from "../../utils/helper.js";
 
 const Details = ({ details = {}, onButtonClick, isArchived = false }) => {
   const handleButtonClick = (id) => {
@@ -18,8 +22,8 @@ const Details = ({ details = {}, onButtonClick, isArchived = false }) => {
           />
         </div>
         <div className="contacts">
-          <div className="from">+{details.from}</div>
-          <div className="to">Tried to call on Xavier</div>
+          <div className="from">{formatPhoneNumber(details.from)}</div>
+          <div className="to">{displayMessage(details)}</div>
         </div>
       </div>
       <div className="right-section">
