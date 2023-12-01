@@ -18,7 +18,7 @@ const Modal = ({ callId, handleToggleModal }) => {
             {!loading && (
               <div>
                 <p>
-                  <strong>Date</strong>:
+                  <strong>Date</strong>:{" "}
                   <span>{`${formatDate(data.created_at)} ${formatTime(
                     data.created_at
                   )}`}</span>
