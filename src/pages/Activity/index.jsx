@@ -10,8 +10,7 @@ import TabPanel from "../../components/TabPanel.jsx";
 const Activity = () => {
   const [tab, setTab] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    event.preventDefault();
+  const handleChange = (newValue) => {
     setTab(newValue);
   };
 

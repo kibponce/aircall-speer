@@ -1,10 +1,10 @@
 import React from "react";
-import InboxLists from "./InboxLists.jsx";
 import useActivity from "../../hooks/useActivity.js";
-import ArchiveButton from "../../components/activity/ArchiveButton.jsx";
+import Lists from "./Lists.jsx";
+import Button from "../../components/activity/Button.jsx";
 
 const Inbox = () => {
-  const { loading, data, error, toArchiveCall } = useActivity();
+  const { loading, activities, error, handleArchiveCall } = useActivity();
 
   if (loading) return <div className="loading">Loading...</div>;
 
@@ -13,11 +13,15 @@ const Inbox = () => {
   return (
     <div className="inbox">
       <div className="action-header">
-        <ArchiveButton>
+        <Button isArchived={false}>
           <span>Archive all calls</span>
-        </ArchiveButton>
+        </Button>
       </div>
-      <InboxLists data={data} toArchiveCall={toArchiveCall} />
+      <Lists
+        data={activities}
+        isArchived={false}
+        onButtonClick={handleArchiveCall}
+      />
     </div>
   );
 };

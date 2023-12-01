@@ -15,10 +15,5 @@ export const formatTime = (date) => {
 };
 
 export const groupDataByCreatedAt = (data = []) => {
-  // removed archived and incomplete information calls
-  const parseData = data.filter(
-    (item) => !item.isArchived && item.direction && item.call_type
-  );
-
-  return Object.groupBy(parseData, (item) => formatDate(item.created_at));
+  return Object.groupBy(data, (item) => formatDate(item.created_at));
 };

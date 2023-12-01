@@ -1,12 +1,11 @@
 import React from "react";
-import ArchiveButton from "../../components/activity/ArchiveButton.jsx";
+import Button from "../../components/activity/Button.jsx";
 import CallDetailsStatusIcon from "../../components/activity/CallDetailsStatusIcon.jsx";
 import { formatTime } from "../../utils/helper.js";
 
-const InboxListsDetails = ({ details = {}, toArchiveCall }) => {
-  const handleOnArchiveCall = (id) => {
-    console.log("id", id);
-    toArchiveCall(id);
+const Details = ({ details = {}, onButtonClick, isArchived = false }) => {
+  const handleButtonClick = (id) => {
+    onButtonClick(id);
   };
 
   return (
@@ -25,10 +24,13 @@ const InboxListsDetails = ({ details = {}, toArchiveCall }) => {
       </div>
       <div className="right-section">
         <div className="time">{formatTime(details.created_at)}</div>
-        <ArchiveButton onClick={(e) => handleOnArchiveCall(details.id)} />
+        <Button
+          onClick={(e) => handleButtonClick(details.id)}
+          isArchived={isArchived}
+        />
       </div>
     </div>
   );
 };
 
-export default InboxListsDetails;
+export default Details;

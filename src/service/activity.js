@@ -4,8 +4,12 @@ export const getActivityFeed = () => {
   return api.get("/activities").then((response) => response.data);
 };
 
-export const archivedCall = (id) => {
-  return api.put(`/activities/${id}`, {
-    is_archived: true,
+export const patchActivityCall = ({ id, isArchived }) => {
+  return api.patch(`/activities/${id}`, {
+    is_archived: isArchived,
   });
+};
+
+export const resetActivityCalls = () => {
+  return api.patch("/reset");
 };

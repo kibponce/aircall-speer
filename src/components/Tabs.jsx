@@ -8,9 +8,9 @@ const Tabs = ({ value, onChange, children }) => {
           // clone the child elements so we can send custom property values
           return React.cloneElement(child, {
             key: index,
-            onClick: (e) => {
+            onClick: () => {
               // return index as the value to determine the active tab
-              onChange(e, index);
+              onChange(index);
             },
             isSelected: value === index,
           });

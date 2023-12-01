@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { getActivityFeed, archivedCall } from "../service/activity.js";
-import { groupDataByCreatedAt } from "../utils/helper.js";
+import {
+  getActivityFeed,
+  patchActivityCall,
+  resetActivityCalls,
+} from "../service/activity.js";
 
 const useActivity = () => {
-  const [data, setData] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [archives, setArchives] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -11,7 +15,18 @@ const useActivity = () => {
     setLoading(true);
     getActivityFeed()
       .then((response) => {
-        setData(groupDataByCreatedAt(response));
+        // get unarchive data and filter out incomplete data
+        const filterActivities = response.filter(
+          (item) => !item.is_archived && item.direction && item.call_type
+        );
+        setActivities(filterActivities);
+
+        // get archive data and filter out incomplete data
+        const filterArchives = response.filter(
+          (item) => item.is_archived && item.direction && item.call_type
+        );
+        setArchives(filterArchives);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -20,9 +35,28 @@ const useActivity = () => {
       });
   };
 
-  const toArchiveCall = (id) => {
-    archivedCall(id).then((response) => {
-      console.log("success", archived, data);
+  const handleArchiveCall = (id) => {
+    patchActivityCall({ id: id, isArchived: true }).then(() => {
+      // remove the object from the lists of activities
+      const updatedLists = activities.filter((item) => item.id !== id);
+
+      setActivities(updatedLists);
+    });
+  };
+
+  const handleUnarchiveCall = (id) => {
+    patchActivityCall({ id: id, isArchived: false }).then((response) => {
+      // remove the object from the lists of archives
+      const updatedLists = archives.filter((item) => item.id !== id);
+
+      setArchives(updatedLists);
+    });
+  };
+
+  const handleResetCalls = (id) => {
+    resetActivityCalls().then((response) => {
+      // empty the archive lists
+      setArchives([]);
     });
   };
 
@@ -31,10 +65,13 @@ const useActivity = () => {
   }, []);
 
   return {
+    activities,
+    archives,
     loading,
-    data,
     error,
-    toArchiveCall,
+    handleArchiveCall,
+    handleUnarchiveCall,
+    handleResetCalls,
   };
 };
 
