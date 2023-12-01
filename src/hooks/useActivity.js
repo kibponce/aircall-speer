@@ -45,7 +45,7 @@ const useActivity = () => {
   };
 
   const handleUnarchiveCall = (id) => {
-    patchActivityCall({ id: id, isArchived: false }).then((response) => {
+    patchActivityCall({ id: id, isArchived: false }).then(() => {
       // remove the object from the lists of archives
       const updatedLists = archives.filter((item) => item.id !== id);
 
@@ -53,8 +53,8 @@ const useActivity = () => {
     });
   };
 
-  const handleResetCalls = (id) => {
-    resetActivityCalls().then((response) => {
+  const handleResetCalls = () => {
+    resetActivityCalls().then(() => {
       // empty the archive lists
       setArchives([]);
     });
