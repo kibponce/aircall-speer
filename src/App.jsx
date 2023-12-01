@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import Header from "./components/Header.jsx";
-import Activity from "./pages/Activity/index.js";
+import Activity from "./pages/Activity/index.jsx";
 
 const App = () => {
   return (
