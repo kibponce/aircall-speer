@@ -24,7 +24,7 @@ const Archived = () => {
       <InboxLists
         data={archives}
         isArchived={true}
-        onButtonClick={handleUnarchiveCall}
+        handleUpdateCall={handleUnarchiveCall}
       />
     </div>
   );

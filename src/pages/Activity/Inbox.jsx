@@ -22,7 +22,7 @@ const Inbox = () => {
       <Lists
         data={activities}
         isArchived={false}
-        onButtonClick={handleArchiveCall}
+        handleUpdateCall={handleArchiveCall}
       />
     </div>
   );

@@ -35,22 +35,26 @@ const useActivity = () => {
       });
   };
 
-  const handleArchiveCall = (id) => {
-    patchActivityCall({ id: id, isArchived: true }).then(() => {
-      // remove the object from the lists of activities
-      const updatedLists = activities.filter((item) => item.id !== id);
+  const handleArchiveCall = (id, errorCallback) => {
+    patchActivityCall({ id: id, isArchived: true })
+      .then(() => {
+        // remove the object from the lists of activities
+        const updatedLists = activities.filter((item) => item.id !== id);
 
-      setActivities(updatedLists);
-    });
+        setActivities(updatedLists);
+      })
+      .catch(errorCallback);
   };
 
-  const handleUnarchiveCall = (id) => {
-    patchActivityCall({ id: id, isArchived: false }).then(() => {
-      // remove the object from the lists of archives
-      const updatedLists = archives.filter((item) => item.id !== id);
+  const handleUnarchiveCall = (id, errorCallback) => {
+    patchActivityCall({ id: id, isArchived: false })
+      .then(() => {
+        // remove the object from the lists of archives
+        const updatedLists = archives.filter((item) => item.id !== id);
 
-      setArchives(updatedLists);
-    });
+        setArchives(updatedLists);
+      })
+      .catch(errorCallback);
   };
 
   const handleResetCalls = () => {
