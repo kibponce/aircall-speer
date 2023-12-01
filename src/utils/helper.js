@@ -40,5 +40,9 @@ export const displayMessage = (item) => {
 };
 
 export const groupDataByCreatedAt = (data = []) => {
-  return Object.groupBy(data, (item) => formatDate(item.created_at));
+  // sort data first then group
+  return Object.groupBy(
+    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
+    (item) => formatDate(item.created_at)
+  );
 };

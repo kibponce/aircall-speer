@@ -32,6 +32,11 @@
   text-align: left;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
+}
+
+.call .details:hover {
+  background-color: #e5dfdf;
 }
 
 .call .left-section {
