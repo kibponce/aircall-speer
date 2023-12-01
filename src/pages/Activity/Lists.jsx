@@ -9,6 +9,8 @@ const Lists = ({ data = [], isArchived, handleUpdateCall }) => {
   }, [data]);
 
   const onButtonClick = (id) => {
+    // clear any first
+    setError(false);
     handleUpdateCall(id, errorCallback);
   };
 
