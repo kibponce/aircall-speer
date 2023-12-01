@@ -61,7 +61,7 @@
 .call .right-section {
   width: 30%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -82,7 +82,8 @@
 }
 
 .loading,
-.error {
+.error,
+.empty-lists {
   padding: 15px;
 }
 

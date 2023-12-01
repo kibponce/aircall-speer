@@ -24,9 +24,10 @@ const Button = (props) => {
       </svg>
     );
   }, [props.isArchived]);
+
   return (
     <button className="archive-button" {...props}>
-      {icon}
+      {!props.noIcon && icon}
       {props.children}
     </button>
   );
