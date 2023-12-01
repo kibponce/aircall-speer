@@ -1,0 +1,86 @@
+.inbox .action-header {
+  padding: 10px;
+  border-radius: 0px 0px 10px 10px;
+  border: 1px solid #e5dfdf;
+  border-top: none;
+  margin: 0px 15px;
+}
+
+.inbox-lists {
+  padding: 10px 0px;
+}
+
+.call .dashed {
+  border-bottom: 1px dashed #e5dfdf;
+  text-align: center;
+  height: 8px;
+  margin-bottom: 10px;
+}
+
+.call .dashed .date {
+  background: #fff;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.call .details {
+  margin: 15px 15px 10px 15px;
+  padding: 15px 0px 15px 15px;
+  border: 1px solid #e5dfdf;
+  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+.call .left-section {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+}
+
+.call .left-section .contacts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.call .left-section .status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.call .right-section {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.call .from {
+  color: #434343;
+}
+
+.call .to,
+.call .time {
+  font-size: 12px;
+}
+
+.call .icon.missed {
+  color: #d1051f;
+}
+.call .icon.answered {
+  color: #03cd14;
+}
+
+.loading,
+.error {
+  padding: 15px;
+}
+
+.error {
+  color: #d1051f;
+}
