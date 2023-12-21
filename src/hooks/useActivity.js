@@ -64,6 +64,11 @@ const useActivity = () => {
     });
   };
 
+  const handleArchiveAllCalls = () => {
+    // can't find an enpoint to archive all calls in one call
+    // looping each calls to have http call can compromise performance and api throttle
+  };
+
   useEffect(() => {
     init();
   }, []);
@@ -76,6 +81,7 @@ const useActivity = () => {
     handleArchiveCall,
     handleUnarchiveCall,
     handleResetCalls,
+    handleArchiveAllCalls,
   };
 };
 
