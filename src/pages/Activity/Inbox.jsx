@@ -16,7 +16,8 @@ const Inbox = () => {
 
   if (error) return <div className="error">{error.message}</div>;
 
-  if (activities.length === 0) return <div>The list is empty</div>;
+  if (activities.length === 0)
+    return <div className="empty-lists">The list is empty</div>;
 
   return (
     <div className="inbox">

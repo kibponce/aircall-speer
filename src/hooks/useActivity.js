@@ -15,15 +15,18 @@ const useActivity = () => {
     setLoading(true);
     getActivityFeed()
       .then((response) => {
+        const incompleteCondition = (item) =>
+          item.direction && item.call_type && item.from && item.to;
+
         // get unarchive data and filter out incomplete data
         const filterActivities = response.filter(
-          (item) => !item.is_archived && item.direction && item.call_type
+          (item) => !item.is_archived && incompleteCondition(item)
         );
         setActivities(filterActivities);
 
         // get archive data and filter out incomplete data
         const filterArchives = response.filter(
-          (item) => item.is_archived && item.direction && item.call_type
+          (item) => item.is_archived && incompleteCondition(item)
         );
         setArchives(filterArchives);
 
@@ -65,8 +68,15 @@ const useActivity = () => {
   };
 
   const handleArchiveAllCalls = () => {
-    // can't find an enpoint to archive all calls in one call
-    // looping each calls to have http call can compromise performance and api throttle
+    // map all activity into a promise call
+    const activitiesPromise = activities.map((activity) =>
+      patchActivityCall({ id: activity.id, isArchived: true })
+    );
+
+    Promise.all(activitiesPromise).then(() => {
+      // clear all activities
+      setActivities([]);
+    });
   };
 
   useEffect(() => {
